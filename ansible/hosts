@@ -1,1 +1,1 @@
-zeus
+zeus ansible_port=2002 ansible_host=144.76.62.53 ansible_user=root

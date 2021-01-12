@@ -1,6 +1,6 @@
-- hosts: zeus
-  tasks:
-  - name: Basic Task
-    apt:
-      name: gnupg2
-    become: true
+---
+- name: Base System Configuration
+  hosts: all
+  roles:
+    - role: base
+      become: true
