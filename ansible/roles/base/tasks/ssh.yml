@@ -1,4 +1,24 @@
+---
 - name: Setup SSH Keys
   ansible.posix.authorized_key:
-    user: {{ user }}
-    state: https://github.com/lucemans.keys
+    user: "{{ user }}"
+    key: https://github.com/lucemans.keys
+    state: present
+
+- name: Remove SSH Banner
+  file:
+    path: '/etc/update-motd.d/{{ item }}'
+    state: absent
+  loop:
+  - "00-header"
+  - "90-updates-available"
+  - "10-help-text"
+  - "50-motd-news"
+
+- name: Install the SSH Banner
+  copy:
+    src: files/99-banner
+    dest: /etc/update-motd.d/99-banner
+    owner: root
+    group: root
+    mode: '755'

@@ -2,6 +2,8 @@
   user:
     name: "{{ user }}"
     home: "{{ home }}"
+    password: "{{ user_password | password_hash('sha512') }}"
+    update_password: "on_create"
     shell: /bin/bash
     system: true
   become: true
