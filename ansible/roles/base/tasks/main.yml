@@ -8,3 +8,9 @@
     - software-properties-common
     state: present
     update_cache: yes
+
+- name: Users
+  include: users.yml
+
+- name: SSH
+  include: ssh.yml

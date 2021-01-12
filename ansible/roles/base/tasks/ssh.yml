@@ -1,0 +1,4 @@
+- name: Setup SSH Keys
+  ansible.posix.authorized_key:
+    user: {{ user }}
+    state: https://github.com/lucemans.keys
