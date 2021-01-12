@@ -12,5 +12,10 @@ Greatly inspired by [realorangeone/infrastructure](https://github.com/realorange
 
 ## Stuff that needs to run
 
+### Docker-Compose
+
 - Traefik - Load Balancing
-- K3S
+
+### K3S
+
+- lvk.sh
