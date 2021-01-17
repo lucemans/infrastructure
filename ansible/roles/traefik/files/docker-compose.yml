@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  traefik:
+    # The official v2 Traefik docker image
+    image: traefik:v2.3
+    # Enables the web UI and tells Traefik to listen to docker
+    command: --api.insecure=true
+    ports:
+      # The HTTP port
+      - "80:80"
+      - "443:443"
+      # The Web UI (enabled by --api.insecure=true)
+      - "8081:8080"
+      - "25565:25565"
+    network_mode: host
+    environment:
+      - KUBECONFIG=/root/.kube/config
+      - CLOUDFLARE_EMAIL=luc@lucemans.nl
+      - CLOUDFLARE_API_KEY=2c29a07527e6756eacd6cc36ba660222ebe12
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /root/.kube/config:/root/.kube/config
+      - /opt/traefik/traefik.yml:/etc/traefik/traefik.yml
+      - /opt/traefik/acme.json.json:/acme.json
+      - /opt/traefik/static.toml:/static.toml

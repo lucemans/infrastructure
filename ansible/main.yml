@@ -4,3 +4,10 @@
   roles:
     - role: base
       become: true
+
+- name: Install Docker
+  hosts:
+  - zeus
+  roles:
+  - docker
+  - traefik

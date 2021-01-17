@@ -1,0 +1,30 @@
+- name: Create install directory
+  file:
+    path: /opt/nginx
+    state: directory
+    owner: "{{ user }}"
+  become: true
+
+- name: Install compose file
+  template:
+    src: files/docker-compose.yml
+    dest: /opt/traefik/docker-compose.yml
+    owner: "{{ user }}"
+  notify: restart traefik
+  become: true
+
+- name: Copy over required files
+  template:
+    src: files/traefik.yml
+    dest: /opt/traefik/traefik.yml
+    owner: "{{ user }}"
+  notify: restart traefik
+  become: true
+
+- name: Copy over required files
+  template:
+    src: files/static.toml
+    dest: /opt/traefik/static.toml
+    owner: "{{ user }}"
+  notify: restart traefik
+  become: true

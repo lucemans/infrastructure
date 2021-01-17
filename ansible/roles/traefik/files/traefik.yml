@@ -1,0 +1,30 @@
+api:
+  dashboard: true
+  insecure: false
+providers:
+  kubernetesIngress:
+    namespaces: []
+  docker: {}
+  file:
+    filename: /static.toml
+entryPoints:
+  web:
+    address: ':80'
+    http:
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+  websecure:
+    address: ':443'
+  minecraft:
+    address: ':25565'
+  minecraftudp:
+    address: ':25565/udp'
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      caServer: https://acme-v02.api.letsencrypt.org/directory
+      dnsChallenge:
+        provider: cloudflare
+        delayBeforeCheck: 0

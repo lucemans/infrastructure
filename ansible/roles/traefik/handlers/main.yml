@@ -1,0 +1,5 @@
+- name: restart traefik
+  shell:
+    chdir: /opt/traefik
+    cmd: "{{ docker_update_command }}"
+  become: true

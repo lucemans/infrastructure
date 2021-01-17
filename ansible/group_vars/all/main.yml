@@ -1,2 +1,4 @@
 user: luc
 home: /home/{{ user }}
+
+docker_update_command: docker-compose pull && docker-compose down --remove-orphans && docker-compose rm && docker-compose up -d
