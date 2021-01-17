@@ -14,13 +14,10 @@ services:
       - "8081:8080"
       - "25565:25565"
     network_mode: host
-    environment:
-      - KUBECONFIG=/root/.kube/config
-      - CLOUDFLARE_EMAIL=luc@lucemans.nl
-      - CLOUDFLARE_API_KEY=2c29a07527e6756eacd6cc36ba660222ebe12
+    env_file: '.env'
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /root/.kube/config:/root/.kube/config
       - /opt/traefik/traefik.yml:/etc/traefik/traefik.yml
-      - /opt/traefik/acme.json.json:/acme.json
-      - /opt/traefik/static.toml:/static.toml
+      - /opt/traefik/acme.json:/acme.json
+      - /opt/traefik/static.yml:/static.yml

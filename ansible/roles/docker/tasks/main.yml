@@ -11,13 +11,22 @@
 - name: Update apt and install docker
   apt:
     update_cache: yes
-    name: docker
+    name: docker-ce
     state: latest
 
 - name: Install docker-compose
   apt:
     name: docker-compose
   become: true
+
+- name: Ensure docker users are added to the docker group.
+  user:
+    name: "{{ item }}"
+    groups: ['docker']
+    append: true
+  with_items:
+  - root
+  - "{{ user }}"
 
 - name: Clean up docker containers
   cron:

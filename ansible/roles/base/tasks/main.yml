@@ -6,6 +6,7 @@
     - curl
     - gnupg-agent
     - software-properties-common
+    - python3-pip
     state: present
     update_cache: yes
 

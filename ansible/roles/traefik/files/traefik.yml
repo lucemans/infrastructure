@@ -6,7 +6,7 @@ providers:
     namespaces: []
   docker: {}
   file:
-    filename: /static.toml
+    filename: /static.yml
 entryPoints:
   web:
     address: ':80'

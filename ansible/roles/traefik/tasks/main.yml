@@ -1,8 +1,9 @@
 - name: Create install directory
   file:
-    path: /opt/nginx
+    path: /opt/traefik
     state: directory
     owner: "{{ user }}"
+    group: "{{ user }}"
   become: true
 
 - name: Install compose file
@@ -10,6 +11,7 @@
     src: files/docker-compose.yml
     dest: /opt/traefik/docker-compose.yml
     owner: "{{ user }}"
+    group: "{{ user }}"
   notify: restart traefik
   become: true
 
@@ -18,13 +20,34 @@
     src: files/traefik.yml
     dest: /opt/traefik/traefik.yml
     owner: "{{ user }}"
+    group: "{{ user }}"
   notify: restart traefik
   become: true
 
 - name: Copy over required files
   template:
-    src: files/static.toml
-    dest: /opt/traefik/static.toml
+    src: files/env
+    dest: /opt/traefik/.env
     owner: "{{ user }}"
+    group: "{{ user }}"
   notify: restart traefik
   become: true
+
+- name: Copy over required files
+  template:
+    src: files/static.yml
+    dest: /opt/traefik/static.yml
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  notify: restart traefik
+  become: true
+
+- name: Ensure acme.json exists
+  file:
+    path: /opt/traefik/acme.json
+    state: touch
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: '600'
+  become: true
+  changed_when: false

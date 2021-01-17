@@ -1,0 +1,36 @@
+http:
+  routers:
+    dashboard:
+      rule: Host(`traefik.lucemans.com`)
+      service: api@internal
+      tls:
+        certResolver: letsencrypt
+    dashboard2:
+      rule: Host(`hermes.lvk.sh`)
+      service: api@internal
+      tls:
+        certResolver: letsencrypt
+    jitsi:
+      rule: Host(`meet.lvk.sh`)
+      service: jitsi
+      tls:
+        certResolver: letsencrypt
+    plausible:
+      rule: Host(`plausible.lvk.sh`)
+      service: plausible
+      tls:
+        certResolver: letsencrypt
+  services:
+    plausible:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8001/"
+    jitsi:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8000/"
+  middlewares:
+    sslRedirect:
+      redirectScheme:
+        scheme: https
+        permanent: false
