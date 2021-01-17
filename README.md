@@ -25,6 +25,7 @@ Sets up personal platforms, and updates dns records
 - [] Link Shortening
 - [] Image / File Uploading / Hosting
 - [] S3 Compatible Object Storage
+- [] Setup Firefly Finance [firefly-iii](https://github.com/firefly-iii/firefly-iii#getting-started)
 
 ## Stuff that needs to run
 
