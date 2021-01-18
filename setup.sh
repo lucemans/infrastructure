@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "You're about to setup."
-read -p "Abort now while you still can. Press enter to proceed" nxt
+read -p "Press enter to proceed [Enter]: " nxt
 
 set -e
 

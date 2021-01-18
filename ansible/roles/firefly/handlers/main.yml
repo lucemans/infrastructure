@@ -1,0 +1,5 @@
+- name: restart firefly
+  shell:
+    chdir: /opt/firefly
+    cmd: "{{ docker_update_command }}"
+  become: true

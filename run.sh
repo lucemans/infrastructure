@@ -1,7 +1,7 @@
 #!/bin/sh
 echo "This file assumes you have Ansible and Terraform installed."
 echo "And that you have run setup PRIOR to running this file."
-read -p "Abort now while you still can. Press enter to proceed" nxt
+read -p "Press enter to proceed [Enter]: " nxt
 
 # Crash if anything returns a non-zero status
 set -e

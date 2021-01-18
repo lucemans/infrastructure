@@ -1,0 +1,32 @@
+- name: Create install directory
+  file:
+    path: /opt/firefly
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  become: true
+
+- name: Install compose file
+  template:
+    src: files/docker-compose.yml
+    dest: /opt/firefly/docker-compose.yml
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  notify: restart firefly
+  become: true
+
+- name: Copy over required files
+  template:
+    src: files/env
+    dest: /opt/firefly/.env
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  notify: restart firefly
+  become: true
+
+- name: Add Recurring Transaction Cron Job
+  cron:
+    name: "Firefly Recurring"
+    minute: "0"
+    hour: "3"
+    job: "docker exec --user www-data firefly_fireflyiii_1 /usr/local/bin/php /var/www/html/artisan firefly-iii:cron"

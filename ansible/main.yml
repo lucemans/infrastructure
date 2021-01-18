@@ -8,6 +8,20 @@
 - name: Install Docker
   hosts:
   - zeus
+  - hermes
   roles:
   - docker
+
+- name: Install Traefik
+  hosts:
+  - zeus
+  - hermes
+  roles:
   - traefik
+
+- name: Setup Firefly
+  hosts:
+  - zeus
+  - hermes
+  roles:
+  - firefly
