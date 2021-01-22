@@ -1,3 +1,26 @@
+tcp:
+  routers:
+    Router-1:
+      entryPoints:
+        - minecraft
+      rule: HostSNI(`*`)
+      service: service-1
+  services:
+    service-1:
+      loadBalancer:
+        servers:
+          - address: "10.28.183.113:25564"
+udp:
+  routers:
+    Router-2:
+      entryPoints:
+        - minecraftudp
+      service: service-2
+  services:
+    service-2:
+      loadBalancer:
+        servers:
+          - address: "10.28.183.113:25564"
 http:
   routers:
     dashboard:

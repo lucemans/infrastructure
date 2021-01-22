@@ -4,7 +4,8 @@ api:
 providers:
   kubernetesIngress:
     namespaces: []
-  docker: {}
+  docker:
+    exposedByDefault: false
   file:
     filename: /static.yml
 entryPoints:

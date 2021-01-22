@@ -7,6 +7,7 @@ services:
       - firefly_iii_upload:/var/www/html/storage/upload
     env_file: .env
     labels:
+      - traefik.enable=true
       - traefik.http.routers.fireflyiii.rule=Host(`finance.lvk.sh`)
       - traefik.http.routers.fireflyiii.tls=true
       - traefik.http.routers.fireflyiii.service=fireflyiii
