@@ -43,6 +43,11 @@ http:
       service: plausible
       tls:
         certResolver: letsencrypt
+    fdynmap:
+      rule: Host(`dynmap.florisvk.be`)
+      service: fdynmap
+      tls:
+        certResolver: letsencrypt
   services:
     plausible:
       loadBalancer:
@@ -52,6 +57,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://localhost:8000/"
+    fdynmap:
+      loadBalancer:
+        servers:
+          - url: "http://10.28.183.113:8123/"
   middlewares:
     sslRedirect:
       redirectScheme:
