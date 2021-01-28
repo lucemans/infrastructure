@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    ports:
+      - 8086:8086
+      - 8089:8089/udp
+    volumes:
+      - /opt/influxdb/:/var/lib/influxdb
+    restart: unless-stopped
+
+    environment:
+      - INFLUXDB_DB=traefik
+      - INFLUXDB_UDP_ENABLED=true
+      - INFLUXDB_UDP_DATABASE=traefik

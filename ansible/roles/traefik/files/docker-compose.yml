@@ -21,3 +21,5 @@ services:
       - /opt/traefik/traefik.yml:/etc/traefik/traefik.yml
       - /opt/traefik/acme.json:/acme.json
       - /opt/traefik/static.yml:/static.yml
+      - /opt/traefik/access.log:/access.log
+    restart: unless-stopped

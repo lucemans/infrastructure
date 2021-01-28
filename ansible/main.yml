@@ -8,20 +8,25 @@
 - name: Install Docker
   hosts:
   - zeus
-  - hermes
   roles:
   - docker
 
 - name: Install Traefik
   hosts:
   - zeus
-  - hermes
   roles:
   - traefik
 
-- name: Setup Firefly
+- name: Setup Finance
+  hosts:
+  - zeus
+  roles:
+  - firefly
+
+- name: Setup Monitoring
   hosts:
   - zeus
   - hermes
   roles:
-  - firefly
+  - grafana
+  - influxdb

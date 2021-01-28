@@ -1,6 +1,7 @@
 api:
   dashboard: true
   insecure: false
+
 providers:
   kubernetesIngress:
     namespaces: []
@@ -8,6 +9,7 @@ providers:
     exposedByDefault: false
   file:
     filename: /static.yml
+
 entryPoints:
   web:
     address: ':80'
@@ -22,6 +24,7 @@ entryPoints:
     address: ':25565'
   minecraftudp:
     address: ':25565/udp'
+
 certificatesResolvers:
   letsencrypt:
     acme:
@@ -29,3 +32,26 @@ certificatesResolvers:
       dnsChallenge:
         provider: cloudflare
         delayBeforeCheck: 0
+
+metrics:
+  influxDB:
+    addServicesLabels: true
+    addEntryPointsLabels: true
+
+accessLog:
+  filePath: "/access.log"
+  filters:    
+    statusCodes:
+      - "500-510"
+      - "300-302"
+      - "400-410"
+  fields:
+    defaultMode: keep
+    names:
+      ClientUsername: keep
+    headers:
+      defaultMode: keep
+      names:
+          User-Agent: keep
+          Authorization: keep
+          Content-Type: keep

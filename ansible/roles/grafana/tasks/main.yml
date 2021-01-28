@@ -1,0 +1,29 @@
+- name: Create install directory
+  file:
+    path: /opt/grafana
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  become: true
+
+- name: Create install directory2
+  file:
+    path: /opt/grafana/data
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 777
+  become: true
+
+- name: Create grafana network
+  docker_network:
+    name: grafana
+
+- name: Install compose file
+  template:
+    src: files/docker-compose.yml
+    dest: /opt/grafana/docker-compose.yml
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  notify: restart grafana
+  become: true
