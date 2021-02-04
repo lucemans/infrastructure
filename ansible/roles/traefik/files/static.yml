@@ -33,6 +33,11 @@ http:
       service: api@internal
       tls:
         certResolver: letsencrypt
+    pterodactylnode:
+      rule: Host(`node.lvk.sh`)
+      service: pterodactylnode
+      tls:
+        certResolver: letsencrypt
     jitsi:
       rule: Host(`meet.lvk.sh`)
       service: jitsi
@@ -53,10 +58,14 @@ http:
       loadBalancer:
         servers:
           - url: "http://localhost:8001/"
+    pterodactylnode:
+      loadBalancer:
+        servers:
+          - url: "http://localhost:8081/"
     jitsi:
       loadBalancer:
         servers:
-          - url: "http://localhost:8000/"
+          - url: "http://hermes.lvk.sh:8000/"
     fdynmap:
       loadBalancer:
         servers:
