@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  siren_front:
+    image: lvk.sh/siren-frontend:latest
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.sirenfront.rule=Host(`siren.lvk.sh`)
+      - traefik.http.routers.sirenfront.tls=true
+      - traefik.http.routers.sirenfront.tls.certresolver=letsencrypt
+      - traefik.http.routers.sirenfront.service=sirenfront
+      - traefik.http.services.sirenfront.loadbalancer.server.port=80

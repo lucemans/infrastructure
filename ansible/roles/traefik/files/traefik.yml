@@ -20,6 +20,8 @@ entryPoints:
           scheme: https
   websecure:
     address: ':443'
+  websocket:
+    address: ':81'
   pterodactyl:
     address: ':8080'
 

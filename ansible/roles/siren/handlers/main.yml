@@ -1,0 +1,5 @@
+- name: restart siren
+  shell:
+    chdir: /opt/siren
+    cmd: "{{ docker_update_command }}"
+  become: true

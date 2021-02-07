@@ -1,0 +1,19 @@
+- name: Create install directory
+  file:
+    path: /opt/siren
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  become: true
+
+- name: Install compose file
+  template:
+    src: files/docker-compose.yml
+    dest: /opt/siren/docker-compose.yml
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  notify: restart siren
+  become: true
+
+
+# lvk.sh/siren-frontend

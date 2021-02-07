@@ -30,3 +30,10 @@
   roles:
   - grafana
   - influxdb
+
+
+- name: Setup Siren
+  hosts:
+  - zeus
+  roles:
+  - siren
